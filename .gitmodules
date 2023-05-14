@@ -1,0 +1,9 @@
+[submodule "CheckMine-DB"]
+	path = CheckMine-DB
+	url = git@github.com:jazli1999/CheckMine-DB.git
+[submodule "CheckMine-Backend"]
+	path = CheckMine-Backend
+	url = git@github.com:jazli1999/CheckMine-Backend.git
+[submodule "CheckMine-Frontend"]
+	path = CheckMine-Frontend
+	url = git@github.com:jazli1999/CheckMine-Frontend.git
