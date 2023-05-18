@@ -1,0 +1,50 @@
+version: '3'
+services:
+
+  holiday-db:
+    image: "postgres:15.3-alpine"
+    container_name: holiday-db
+    environment:
+      - POSTGRES_USER=holiday
+      - POSTGRES_PASSWORD=h0l1day
+      - POSTGRES_DB=holiday
+    volumes:
+      - holiday-data:/var/lib/postresql/data
+    ports:
+      - 5432:5432
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U holiday"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  holiday-backend:
+    build: ./CheckMine-backend
+    restart: on-failure
+    container_name: holiday-backend
+    environment:
+      - DB_HOST=holiday-db
+      - DB_PORT=5432
+      - DB_USERNAME=holiday
+      - DB_PASSWORD=h0l1day
+      - DB_DATABASE=holiday
+      - PORT=8000
+    ports:
+      - 8000:8000
+    depends_on:
+      holiday-db:
+        condition: service_healthy
+
+
+  holiday-frontend:
+    build: ./CheckMine-frontend
+    restart: on-failure
+    container_name: holiday-frontend
+    ports:
+      - 3000:3000
+
+
+volumes:
+  holiday-data:
+    driver: local
+
