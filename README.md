@@ -1,5 +1,7 @@
 # CheckMine - Check24 Hoilday Challenge  
 
+My solution for [Check24 Holiday Challenge](https://github.com/check24-scholarships/holiday-challenge).  
+
 ## Tech Stack  
 1. Frontend: ReactJS, Material UI  
 2. Backend: NodeJS, ExpressJS, Python (to populate the database from csv files)    
@@ -21,9 +23,9 @@
 **NOTE**: First time runing docker-compose could take **very long** (~1h15min on my MacBook Air), to populate the database. `offers.csv` is loaded into database by chunks, and progress is indicated with `tqdm`. However `tqdm` dose not work very well with docker-compose as stated in [this issue](https://github.com/tqdm/tqdm/issues/771), so I used a workaround to directly print the `tqdm` object. It does not look very good, but it works and displays the importing progress.  
 
 ## Demo  
-- A deploy can be found [here](https://urchin-app-h2t7y.ondigitalocean.app/). Its performance may not look ideal (~5s on the first query and ~3s on following queries with same parameters), but that's mostly because I chose the cheapest plan on DigitalOcean.  
+- A deploy can be found [here](https://urchin-app-h2t7y.ondigitalocean.app/). On some requests (e.g. with airport FRA), the performance may not look ideal (~5s), because I chose the cheapest plan on DigitalOcean. But for most cases, loading time should be ~1s. 
 
-  When running locally, the solution has a satisfactory performance (see <a href="#performance">Performance</a>). 
+  When running locally (or with proper CPU/network hardware support), the solution should have a satisfactory performance for all scenarios (see <a href="#performance">Performance</a>). 
 - Also a screen recording [here](https://youtu.be/yOYuuxw0_rM) in case neither the deploy nor the installation works.  
 
 ## Performance  
